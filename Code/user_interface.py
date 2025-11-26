@@ -19,12 +19,12 @@ def save_feedback_as_txt(what_works, needs_improvement, output_dir="reports"):
     with open(filepath, "w", encoding="utf-8") as f:
         f.write("YouTube Feedback Report\n")
         f.write("=======================\n\n")
-        f.write("✅ What’s Working:\n")
+        f.write("What’s Working:\n")
         f.write(what_works.strip() + "\n\n")
-        f.write("🛠 Needs Improvement:\n")
+        f.write("Needs Improvement:\n")
         f.write(needs_improvement.strip() + "\n")
 
-    print(f"✅ Text report saved at: {filepath}")
+    print(f"Text report saved at: {filepath}")
 
 
 class YouTubeApp(tk.Tk):
@@ -63,8 +63,8 @@ class YouTubeApp(tk.Tk):
         self.show_frame(ResultsPage)
 
     def load_video_data(self, video_url):
-        youtube_api_key = "AIzaSyBD8EDSacRnoKbCfq9riyk2k2th_LYnZks"
-        gemini_api_key = "AIzaSyANhlrpVSZUqrfprtUuyNosUkIezglL3Vg"
+        youtube_api_key = os.getenv("YOUTUBE_API_KEY")
+        gemini_api_key = os.getenv("GEMINI_API_KEY")
 
         dr = DataRetrieval(youtube_api_key, video_url)
         dr.validate_url()
@@ -250,3 +250,4 @@ class ResultsPage(tk.Frame):
 
         self.works_text.config(text=self._remove_formatting(feedback.get("what_works", "").strip()))
         self.needs_text.config(text=self._remove_formatting(feedback.get("needs_improvement", "").strip()))
+
