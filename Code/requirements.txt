@@ -1,0 +1,7 @@
+google-api-python-client>=2.87.0
+google-auth-httplib2>=0.1.0
+google-auth-oauthlib
+youtube-transcript-api
+nltk>=3.8.1
+openai
+vaderSentiment
